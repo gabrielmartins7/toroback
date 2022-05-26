@@ -16,6 +16,8 @@ module.exports = app => {
         .db('users')
         .insert({
           name: req.body.name,
+          account: ('00000' + Math.floor(Math.random() * 10)).slice(-6),
+          amount: 0,
           cpf: req.body.cpf,
           password,
         })
