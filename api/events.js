@@ -2,7 +2,7 @@ module.exports = app => {
   const save = (req, res) => {
     app
       .db('users')
-      .where({ account: parseInt(req.body.target.account) })
+      .where({ account: req.body.target.account })
       .then(usu => {
         if (!usu || usu.length === 0) {
           const msg = `Não foi encontrada a conta ${req.body.target.account}.`;
@@ -24,7 +24,7 @@ module.exports = app => {
         origin_cpf: req.body.origin.cpf,
         target_bank: parseInt(req.body.target.bank),
         target_branch: parseInt(req.body.target.branch),
-        target_account: parseInt(req.body.target.account),
+        target_account: req.body.target.account,
         amount: parseFloat(req.body.amount),
         event: req.body.event,
       })
@@ -32,7 +32,7 @@ module.exports = app => {
         app
           .db('users')
           .where({
-            account: parseInt(req.body.target.account),
+            account: req.body.target.account,
           })
           .where({
             cpf: req.body.origin.cpf,
