@@ -10,18 +10,17 @@ module.exports = app => {
   const save = (req, res) => {
     obterHash(req.body.password, hash => {
       const password = hash;
-      console.warn('aqui');
-      console.warn(req.body);
+      let account = ('00000' + Math.floor(Math.random() * 10)).slice(-6);
       app
         .db('users')
         .insert({
           name: req.body.name,
-          account: ('00000' + Math.floor(Math.random() * 10)).slice(-6),
+          account: account,
           amount: 0,
           cpf: req.body.cpf,
           password,
         })
-        .then(_ => res.status(200).send('USUARIO CADASTRADO COM SUCESSO'))
+        .then(_ => res.status(200).json({ account: account }))
         .catch(err => res.status(400).json(err));
     });
   };
