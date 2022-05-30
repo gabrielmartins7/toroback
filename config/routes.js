@@ -6,5 +6,5 @@ module.exports = app => {
   app
     .route('/buy/stock')
     .all(app.config.passport.authenticate())
-    .post(app.api.task.save);
+    .post(app.api.stock.save);
 };
