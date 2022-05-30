@@ -14,22 +14,16 @@ module.exports = app => {
       .first();
 
     if (user) {
-      bcrypt.compare(req.body.password, user.password, (err, isMatch) => {
-        if (err || !isMatch) {
-          return res.status(401).send('A senha informada é inválida!');
-        }
+      const payload = {
+        id: user.id,
+        name: user.name,
+        cpf: user.cpf,
+      };
 
-        const payload = {
-          id: user.id,
-          name: user.name,
-          cpf: user.cpf,
-        };
-
-        res.json({
-          name: user.name,
-          cpf: user.cpf,
-          token: jwt.encode(payload, authSecret),
-        });
+      res.json({
+        name: user.name,
+        cpf: user.cpf,
+        token: jwt.encode(payload, authSecret),
       });
     } else {
       res.status(400).send('Usuário não cadastrado!');
