@@ -8,6 +8,7 @@ module.exports = app => {
   };
 
   const save = (req, res) => {
+    console.log(req.body)
     obterHash(req.body.password, hash => {
       const password = hash;
       let account = ('00000' + Math.floor(Math.random() * 10)).slice(-6);

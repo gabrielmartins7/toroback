@@ -1,0 +1,250 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/signup": {
+      "post": {
+        "tags": [
+          "signup"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Signup"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "examples": "application/json",
+            "Ids_Match": [
+              {
+                "id": "1",
+                "value": 89
+              },
+              {
+                "id": "2",
+                "value": 82
+              }
+            ]
+          },
+          "400": {
+            "description": "Error"
+          }
+        }
+      }
+    },
+    "/signin": {
+      "post": {
+        "tags": [
+          "Signin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Signin"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/spb/events": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SPBEvents"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/buy/stock": {
+      "type": "object",
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BuyStock"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "definitions": {
+    "Signup": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Jhon Doe"
+        },
+        "cpf": {
+          "type": "string",
+          "example": "12345678912"
+        },
+        "password": {
+          "type": "string",
+          "example": "123456"
+        }
+      },
+      "required": [
+        "name",
+        "cpf",
+        "password"
+      ],
+      "xml": {
+        "name": "Signup"
+      }
+    },
+    "Signin": {
+      "type": "object",
+      "properties": {
+        "cpf": {
+          "type": "string",
+          "example": "12345678912"
+        },
+        "password": {
+          "type": "string",
+          "example": "123456"
+        }
+      },
+      "required": [
+        "cpf",
+        "password"
+      ],
+      "xml": {
+        "name": "Signin"
+      }
+    },
+    "SPBEvents": {
+      "type": "object",
+      "properties": {
+        "event": {
+          "type": "string",
+          "example": "TRANSFER"
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "bank": {
+              "type": "number",
+              "example": "352"
+            },
+            "branch": {
+              "type": "string",
+              "example": "0001"
+            },
+            "account": {
+              "type": "string",
+              "example": "000004"
+            }
+          }
+        },
+        "origin": {
+          "type": "object",
+          "properties": {
+            "bank": {
+              "type": "number",
+              "example": "033"
+            },
+            "branch": {
+              "type": "string",
+              "example": "0001"
+            },
+            "cpf": {
+              "type": "string",
+              "example": "12345678901"
+            }
+          }
+        },
+        "amount": {
+          "type": "number",
+          "example": "1500"
+        }
+      },
+      "required": [
+        "name",
+        "cpf",
+        "password"
+      ],
+      "xml": {
+        "name": "SPBEvents"
+      }
+    },
+    "BuyStock": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string",
+          "example": "99999"
+        },
+        "stock": {
+          "type": "string",
+          "example": "SANB11"
+        },
+        "qtd": {
+          "type": "number",
+          "example": "10"
+        },
+        "value": {
+          "type": "number",
+          "example": "99.9"
+        }
+      },
+      "required": [
+        "account",
+        "stock",
+        "qtd",
+        "value"
+      ],
+      "xml": {
+        "name": "BuyStock"
+      }
+    }
+  }
+}
