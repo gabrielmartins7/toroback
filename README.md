@@ -31,6 +31,9 @@ No terminal execute o comando abaixo para realizar a migrations do banco de dado
 
 `knex migrate:latest`
 
+## ENV_FILE
+Acesso o arquivo env_file e define chave para execução da API, lembre de salvar o arquivo apenas como .env
+
 # Executando a API
 No terminal execute o comando abaixo para realizar inicializar a API.
 
