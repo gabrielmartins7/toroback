@@ -39,17 +39,10 @@
         ],
         "responses": {
           "200": {
-            "examples": "application/json",
-            "Ids_Match": [
-              {
-                "id": "1",
-                "value": 89
-              },
-              {
-                "id": "2",
-                "value": 82
-              }
-            ]
+            "description": "a pet to be returned",
+            "schema": {
+              "$ref": "#/definitions/BuyStock"
+            }
           },
           "400": {
             "description": "Error"
